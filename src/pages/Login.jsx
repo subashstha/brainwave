@@ -49,9 +49,9 @@ const Login = () => {
   };
 
   return (
-    <section className="contact-block py-20">
+    <section className="contact-block py-10 md:py-20">
       <div className="container max-w-200">
-        <h1 className="text-center h2 mb-15">Login</h1>
+        <h1 className="text-center mb-15">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="text-base mb-6">
             <label htmlFor="email" className="block font-medium">

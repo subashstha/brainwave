@@ -25,10 +25,13 @@ const CategoryDetail = () => {
             Category: {slug.replace(/-/g, " ")}
           </h1>
           {postsInCategory && (
-            <div className="blog__row flex flex-wrap -mx-4 -mb-6">
+            <div className="blog__row md:flex md:flex-wrap -mx-4 -mb-6">
               {postsInCategory.map((item, index) => {
                 return (
-                  <div className="blog__col w-1/3 px-4 pb-6" key={index}>
+                  <div
+                    className="blog__col md:w-1/2 lg:w-1/3 px-4 pb-6"
+                    key={index}
+                  >
                     <BlogCard blogCard={item} />
                   </div>
                 );

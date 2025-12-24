@@ -11,14 +11,17 @@ const RelatedPost = ({ related }) => {
 
   return (
     <>
-      <section className="related-block pb-30">
+      <section className="related-block pb-20 md:pb-30">
         <div className="container">
           {title && <h2 className="text-center mb-10">{title}</h2>}
           {featuredPosts && (
-            <div className="blog__row flex flex-wrap -mx-4">
+            <div className="blog__row md:flex md:flex-wrap md:-mx-4 -mb-10">
               {featuredPosts.map((item, index) => {
                 return (
-                  <div className="blog__col w-1/3 px-4" key={index}>
+                  <div
+                    className="blog__col md:w-1/2 lg:w-1/3 md:px-4 mb-10"
+                    key={index}
+                  >
                     <BlogCard blogCard={item} />
                   </div>
                 );

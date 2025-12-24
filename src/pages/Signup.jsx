@@ -72,7 +72,7 @@ const Signup = () => {
   };
 
   return (
-    <section className="blog-block py-20">
+    <section className="blog-block py-10 md:py-20">
       <div className="container max-w-200">
         <h1 className="text-center mb-15">Sign Up</h1>
         <form onSubmit={handleSubmit}>

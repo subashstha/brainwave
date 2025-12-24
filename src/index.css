@@ -46,17 +46,19 @@
 
 @layer base {
   body {
-    @apply font-primary text-gray relative min-w-[32rem] bg-white text-xl leading-[1.68] lg:text-xl [&_a]:transition-all;
+    @apply font-primary text-gray relative min-w-[320px] bg-white text-lg md:text-xl leading-[1.68] lg:text-xl [&_a]:transition-all;
   }
 
   h1,
   .h1 {
-    @apply font-bold text-4xl text-secondary lg:text-[60px] tracking-tighter mb-4 text-gray;
+    @apply font-bold text-4xl text-secondary text-[48px] tracking-tighter mb-4 text-gray;
+    @apply lg:text-[60px];
   }
 
   h2,
   .h2 {
-    @apply font-bold text-2xl text-secondary lg:text-[48px] tracking-tighter leading-[1.2] mb-4 text-gray;
+    @apply font-bold text-2xl text-secondary text-[32px] tracking-tighter leading-[1.2] mb-4 text-gray;
+    @apply lg:text-[48px];
   }
 
   h3,
@@ -81,7 +83,8 @@
 }
 
 @utility container {
-  @apply mx-auto max-w-xl px-7.5;
+  @apply mx-auto max-w-xl px-5;
+  @apply mx-auto max-w-xl md:px-7.5;
 }
 
 @utility btn {

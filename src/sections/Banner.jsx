@@ -4,9 +4,9 @@ const Banner = ({ banner }) => {
   const data = banner || blogs.defaults.banner;
   const { title, text, image, imageDesc } = data;
   return (
-    <section className="banner py-20 text-center">
+    <section className="banner py-10 md:py-15 lg:py-20 text-center">
       <div className="container">
-        <div className="banner__content mb-12.5 mx-auto max-w-150">
+        <div className="banner__content mb-8 md:mb-12.5 mx-auto max-w-150">
           {title && <h1 className="banner__title mb-7">{title}</h1>}
           {text && (
             <div

@@ -10,10 +10,10 @@ const BlogDetail = () => {
   }
 
   return (
-    <section className="blog-detail py-20">
-      <div className="container py-10">
-        <div className="flex flex-wrap">
-          <div className="w-2/3 pe-10">
+    <section className="blog-detail py-10 lg:py-20">
+      <div className="container">
+        <div className="md:flex md:flex-wrap">
+          <div className="md:w-2/3 md:pe-10">
             {post.title && (
               <h1 className="text-3xl font-bold mb-4 h2">{post.title}</h1>
             )}
@@ -53,7 +53,7 @@ const BlogDetail = () => {
               </div>
             )}
           </div>
-          <div className="w-1/3">
+          <div className="md:w-1/3 mt-10 md:mt-0">
             {post.author && (
               <Link
                 to={`/author/${post.author.name

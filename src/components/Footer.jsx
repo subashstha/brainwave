@@ -6,12 +6,15 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="footer text-base text-white bg-secondary pt-15 pb-7.5">
+      <footer className="footer text-base text-white bg-secondary overflow-hidden pt-15 pb-7.5">
         <div className="container">
-          <div className="footer__row flex ">
+          <div className="footer__row flex flex-wrap -mb-10">
             {navigation &&
               navigation.map((item, index) => (
-                <div className="footer__col w-1/5" key={index}>
+                <div
+                  className="footer__col pb-10 w-1/2 md:w-1/3 lg:w-1/5"
+                  key={index}
+                >
                   <div className="footer__title text-white-600 font-normal mb-5">
                     {item.navTitle}
                   </div>
@@ -60,7 +63,7 @@ const Footer = () => {
               </div>
             )}
           </div>
-          <div className="copyright flex flex-wrap justify-between pt-8 mt-20 text-white-600 border-t border-border">
+          <div className="copyright flex flex-col-reverse lg:flex-row gap-y-5 flex-wrap justify-between pt-8 mt-20 text-white-600 border-t border-border">
             <div
               className="copyright__text [&_a]:hover:text-primary"
               dangerouslySetInnerHTML={{ __html: copyright }}

@@ -153,11 +153,11 @@ const Blogs = () => {
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
   return (
-    <section className="blog-block py-20">
+    <section className="blog-block py-10 lg:py-20">
       <div className="container">
-        <h1 className="text-center mb-15">Blogs</h1>
+        <h1 className="text-center mb-10 lg:mb-15">Blogs</h1>
 
-        <div className="filter-holder mb-10 grid grid-cols-4 gap-4">
+        <div className="filter-holder mb-10 grid md:grid-cols-4 gap-4">
           <input
             type="text"
             placeholder="Search blogs..."
@@ -207,9 +207,12 @@ const Blogs = () => {
           <p className="text-center text-gray-500">No blog posts found.</p>
         ) : (
           <>
-            <div className="blog__row flex flex-wrap -mx-4">
+            <div className="blog__row md:flex md:flex-wrap -mx-4">
               {currentPosts.map((item) => (
-                <div className="blog__col w-1/3 px-4 mb-6" key={item.id}>
+                <div
+                  className="blog__col md:w-1/2 lg:w-1/3 px-4 mb-6"
+                  key={item.id}
+                >
                   <BlogCard blogCard={item} />
                 </div>
               ))}

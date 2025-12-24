@@ -436,6 +436,43 @@ export const blogs = {
             </p>
       `,
     },
+
+    privacy: {
+      title: "Privacy Policy",
+      content: `
+        <h2>Introduction</h2>
+        <p>Welcome to our Privacy Policy. Your privacy is critically important to us. This policy explains how we collect, use, and protect your information.</p>
+
+        <h3>Information We Collect</h3>
+        <p>We may collect various types of information, including:</p>
+        <ul>
+          <li>Personal identification information (Name, email address, phone number, etc.)</li>
+          <li>Non-personal identification information (Browser type, device type, etc.)</li>
+          <li>Usage data (Pages visited, clicks, interactions)</li>
+        </ul>
+
+        <h4>How We Use Your Information</h4>
+        <p>The information we collect may be used in the following ways:</p>
+        <ol>
+          <li>To provide and maintain our services.</li>
+          <li>To improve customer service.</li>
+          <li>To send periodic emails and updates.</li>
+        </ol>
+
+        <h5>Sharing Your Information</h5>
+        <p>We do not sell, trade, or rent users' personal identification information to others. However, we may share generic aggregated demographic information.</p>
+
+        <h6>Cookies</h6>
+        <p>Our website may use "cookies" to enhance user experience. You can choose to set your web browser to refuse cookies or alert you when cookies are being sent.</p>
+
+        <img src="/images/banner1.jpg" alt="Privacy Image" />
+
+        <h3>Data Security</h3>
+        <p>We adopt appropriate data collection, storage, and processing practices and security measures to protect against unauthorized access, alteration, disclosure, or destruction of your personal information.</p>
+        <h4>Your Consent</h4>
+        <p>By using our website, you consent to our Privacy Policy and agree to its terms.</p>
+      `,
+    },
   },
 
   aboutPage: {
