@@ -1,0 +1,462 @@
+import { FaTwitter, FaFacebook } from "react-icons/fa";
+import { AiFillInstagram } from "react-icons/ai";
+import { BsLinkedin } from "react-icons/bs";
+import { FaArrowRight } from "react-icons/fa6";
+
+export const blogs = {
+  header: {
+    title: "Brainwave",
+    logo: "/images/logo.svg",
+    navigation: [
+      { name: "Home", link: "/" },
+      { name: "About", link: "/about" },
+      { name: "Blogs", link: "/blog" },
+      { name: "Contact", link: "/contact" },
+    ],
+    auth: [
+      { name: "Sign In", link: "/login", class: "hover:text-primary" },
+      { name: "Sign Up", link: "/signup", class: "btn text-white!" },
+    ],
+  },
+
+  footer: {
+    title: "Brainwave",
+    navigation: [
+      {
+        navTitle: "Company",
+        navLists: [
+          { name: "About us", link: "/about" },
+          { name: "Contact us", link: "/contact" },
+          { name: "Careers", link: "/careers" },
+          { name: "Press", link: "/press" },
+        ],
+      },
+      {
+        navTitle: "Product",
+        navLists: [
+          { name: "Features", link: "/features" },
+          { name: "Pricing", link: "/pricing" },
+          { name: "News", link: "/news" },
+          { name: "Help desk", link: "/helpDesk" },
+          { name: "Support", link: "/support" },
+        ],
+      },
+      {
+        navTitle: "Services",
+        navLists: [
+          { name: "Digital Marketing", link: "/digitalMarketing" },
+          { name: "Content Writing", link: "/contentWriting" },
+          { name: "SEO for Business", link: "/seoForBusiness" },
+          { name: "UI Design", link: "/uiDesign" },
+        ],
+      },
+      {
+        navTitle: "Legal",
+        navLists: [
+          { name: "Privacy Policy", link: "/privacyPolicy" },
+          { name: "Terms & Conditions", link: "/termsAndConditions" },
+          { name: "Return Policy", link: "/returnPolicy" },
+        ],
+      },
+    ],
+    contact: {
+      title: "Contact us",
+      list: [
+        {
+          name: "support@brainwave.io",
+          link: "mailto:support@brainwave.io",
+        },
+        {
+          name: "+133-394-3439-1435",
+          link: "tel:13339434391435",
+        },
+      ],
+    },
+    copyright: `
+      <p>
+        &copy; 2024 Copyright, All Right Reserved, Made by
+        <a href="/" target="_blank">Seju_ui_ux</a>
+        with ❤️
+      </p>
+      `,
+
+    socials: [
+      { name: "twitter", icon: FaTwitter, target: "https://twitter.com" },
+      { name: "facebook", icon: FaFacebook, target: "https://facebook.com" },
+      {
+        name: "instagram",
+        icon: AiFillInstagram,
+        target: "https://instagram.com",
+      },
+      { name: "linkedin", icon: BsLinkedin, target: "https://linkedin.com" },
+    ],
+  },
+
+  posts: [
+    {
+      id: "1",
+      slug: "seo-made-simple",
+      title: "SEO Made Simple",
+      excerpt: "A beginner-friendly guide to ranking higher on Google.",
+      image: "/images/about1.jpg",
+      imageDesc: "Image Description",
+      categories: ["Education", "Games"],
+      date: "September 8, 2025",
+      tags: "Developer, IT",
+      isFeatured: true,
+      author: {
+        name: "Jason Reed",
+        bio: "Chief Technology Officer",
+        image: "/images/team1.jpg",
+        imageDesc: "Author profile image",
+      },
+    },
+    {
+      id: "2",
+      slug: "design-trends-2025",
+      title: "Design Trends 2025",
+      excerpt: "Latest design trends you need to know in 2025.",
+      image: "/images/about2.jpg",
+      imageDesc: "Image Description",
+      categories: ["Education", "Technology"],
+      date: "September 10, 2025",
+      tags: "Developer, IT",
+      isFeatured: false,
+      author: {
+        name: "Subash Shrestha",
+        bio: "UI/UX Designer",
+        image: "/images/team2.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "3",
+      slug: "craft-cms-vs-wordpress",
+      title: "Craft CMS vs WordPress",
+      excerpt: "A detailed comparison between Craft CMS and WordPress.",
+      image: "/images/about3.jpg",
+      imageDesc: "Image Description",
+      categories: ["Games", "Science"],
+      date: "September 12, 2025",
+      tags: "Developer, IT",
+      isFeatured: false,
+      author: {
+        name: "Smriti Shrestha",
+        bio: "Web Developer",
+        image: "/images/team3.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "4",
+      slug: "javascript-basics",
+      title: "JavaScript Basics",
+      excerpt: "Learn the fundamentals of JavaScript in simple steps.",
+      image: "/images/about4.jpg",
+      imageDesc: "Image Description",
+      categories: ["Education", "Technology"],
+      date: "September 15, 2025",
+      tags: "Developer",
+      isFeatured: true,
+      author: {
+        name: "Jason Reed",
+        bio: "Frontend Developer",
+        image: "/images/team1.jpg",
+        imageDesc: "Author profile image",
+      },
+    },
+    {
+      id: "5",
+      slug: "react-vs-vue",
+      title: "React vs Vue",
+      excerpt: "Compare React and Vue for modern web development.",
+      image: "/images/banner1.jpg",
+      imageDesc: "Image Description",
+      categories: ["Technology"],
+      date: "September 18, 2025",
+      tags: "Developer",
+      isFeatured: false,
+      author: {
+        name: "Subash Shrestha",
+        bio: "Frontend Developer",
+        image: "/images/team2.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "6",
+      slug: "ai-in-education",
+      title: "AI in Education",
+      excerpt: "How artificial intelligence is transforming education.",
+      image: "/images/team1.jpg",
+      imageDesc: "Image Description",
+      categories: ["Science", "Education"],
+      date: "September 20, 2025",
+      tags: "AI, Education",
+      isFeatured: false,
+      author: {
+        name: "Smriti Shrestha",
+        bio: "AI Researcher",
+        image: "/images/team3.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "7",
+      slug: "mobile-app-trends",
+      title: "Mobile App Trends 2025",
+      excerpt: "Discover the latest trends in mobile app development.",
+      image: "/images/team2.jpg",
+      imageDesc: "Image Description",
+      categories: ["Technology", "Games"],
+      date: "September 22, 2025",
+      tags: "Mobile, Apps",
+      isFeatured: true,
+      author: {
+        name: "Jason Reed",
+        bio: "Mobile Developer",
+        image: "/images/team2.jpg",
+        imageDesc: "Author profile image",
+      },
+    },
+    {
+      id: "8",
+      slug: "cloud-computing-guide",
+      title: "Cloud Computing Guide",
+      excerpt: "A complete guide to cloud computing for beginners.",
+      image: "/images/team3.jpg",
+      imageDesc: "Image Description",
+      categories: ["Technology"],
+      date: "September 25, 2025",
+      tags: "Cloud, IT",
+      isFeatured: false,
+      author: {
+        name: "Subash Shrestha",
+        bio: "Cloud Engineer",
+        image: "/images/team2.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "9",
+      slug: "gaming-trends-2025",
+      title: "Gaming Trends 2025",
+      excerpt: "Explore the future of gaming in 2025.",
+      image: "/images/team4.jpg",
+      imageDesc: "Image Description",
+      categories: ["Games", "Technology"],
+      date: "September 28, 2025",
+      tags: "Gaming, Tech",
+      isFeatured: false,
+      author: {
+        name: "Smriti Shrestha",
+        bio: "Game Developer",
+        image: "/images/team3.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "10",
+      slug: "blockchain-basics",
+      title: "Blockchain Basics",
+      excerpt: "Learn the core concepts of blockchain technology.",
+      image: "/images/team5.jpg",
+      imageDesc: "Image Description",
+      categories: ["Technology", "Science"],
+      date: "October 1, 2025",
+      tags: "Blockchain, Tech",
+      isFeatured: false,
+      author: {
+        name: "Jason Reed",
+        bio: "Blockchain Expert",
+        image: "/images/team1.jpg",
+        imageDesc: "Author profile image",
+      },
+    },
+    {
+      id: "11",
+      slug: "ux-design-principles",
+      title: "UX Design Principles",
+      excerpt: "Key principles to improve user experience in apps.",
+      image: "/images/team6.jpg",
+      imageDesc: "Image Description",
+      categories: ["Education", "Technology"],
+      date: "October 5, 2025",
+      tags: "UX, Design",
+      isFeatured: true,
+      author: {
+        name: "Subash Shrestha",
+        bio: "UI/UX Designer",
+        image: "/images/team2.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+    {
+      id: "12",
+      slug: "cybersecurity-tips",
+      title: "Cybersecurity Tips",
+      excerpt: "Protect yourself online with these essential tips.",
+      image: "/images/team7.jpg",
+      imageDesc: "Image Description",
+      categories: ["Technology", "Science"],
+      date: "October 8, 2025",
+      tags: "Security, IT",
+      isFeatured: false,
+      author: {
+        name: "Smriti Shrestha",
+        bio: "Security Expert",
+        image: "/images/team3.jpg",
+        imageDesc: "Image Description",
+      },
+    },
+  ],
+
+  defaults: {
+    banner: {
+      title: "Our story",
+      text: `
+          <p>
+              With lots of unique blocks, you can easily build a page
+              without coding. Build your next consultancy website within
+              few minutes.
+          </p>`,
+      image: "/images/banner1.jpg",
+      imageDesc: "Banner image showing our story",
+    },
+
+    info: {
+      title: "We are here to help the customers to get their success.",
+      text: `
+        <p>
+          We share common trends and strategies for improving your rental
+          income and making sure you stay in high demand of service.
+        </p>
+        <p>
+          With lots of unique blocks, you can easily build a page without
+          coding. Build your next landing page. With lots of unique blocks,
+          you can easily build a page without coding any other page.
+        </p>`,
+    },
+
+    about: {
+      images: [
+        { src: "/images/about1.jpg", desc: "Image Description" },
+        { src: "/images/about2.jpg", desc: "Image Description" },
+        { src: "/images/about3.jpg", desc: "Image Description" },
+        { src: "/images/about4.jpg", desc: "Image Description" },
+      ],
+      title: "High skilled coders from worldwide.",
+      text: `
+        <p>
+          We share common trends and strategies for improving your rental
+          income and making sure you stay in high demand of service.
+        </p>
+        <p>
+          With lots of unique blocks, you can easily build a page without
+          coding. Build your next landing page. With lots of unique blocks,
+          you can easily build a page without coding any other page.
+        </p>`,
+    },
+
+    team: {
+      title: "Meet our team",
+      text: `<p>
+              With lots of unique blocks, you can easily build a page without
+              coding. Build your next consultancy website within few minutes.
+            </p>`,
+      teamCards: [
+        {
+          image: "/images/team1.jpg",
+          imageDesc: "Image Description",
+          title: "Joe Bridges",
+          designation: "Founder",
+        },
+        {
+          image: "/images/team2.jpg",
+          imageDesc: "Image Description",
+          title: "Jeffrey Walters",
+          designation: "Cheif Executive Officer",
+        },
+        {
+          image: "/images/team3.jpg",
+          imageDesc: "Image Description",
+          title: "Jason Reed",
+          designation: "Chief Technology Officer",
+        },
+        {
+          image: "/images/team4.jpg",
+          imageDesc: "Image Description",
+          title: "Nellie Padilla",
+          designation: "Creative Director",
+        },
+        {
+          image: "/images/team5.jpg",
+          imageDesc: "Image Description",
+          title: "Dean Bell",
+          designation: "Lead Programmer",
+        },
+        {
+          image: "/images/team6.jpg",
+          imageDesc: "Image Description",
+          title: "Pearl Brooks",
+          designation: "Digital Marketer",
+        },
+        {
+          image: "/images/team7.jpg",
+          imageDesc: "Image Description",
+          title: "Isaiah Griffin",
+          designation: "UX Designer",
+        },
+      ],
+
+      applyCard: {
+        title: "Interested to join our team ?",
+        icon: FaArrowRight,
+        btnText: "Apply now",
+      },
+    },
+
+    related: {
+      title: "Related Posts",
+    },
+
+    contact: {
+      title: "Contact Us",
+    },
+
+    author: {
+      title: "Auhtors",
+    },
+
+    notFound: {
+      title: "404 - Not found",
+      text: `<p>
+              The page you're looking for doesn't exist. Maybe it went on a coffee break ☕,  
+              or got abducted by aliens 👽, or just decided to hide.
+            </p>
+      `,
+    },
+  },
+
+  aboutPage: {
+    about: {
+      images: [
+        { src: "/images/about1.jpg", desc: "Image Description" },
+        { src: "/images/about2.jpg", desc: "Image Description" },
+        { src: "/images/about3.jpg", desc: "Image Description" },
+        { src: "/images/about4.jpg", desc: "Image Description" },
+      ],
+      title: "About page High skilled coders from worldwide.",
+      text: `
+        <p>
+          We share common trends and strategies for improving your rental
+          income and making sure you stay in high demand of service.
+        </p>
+        <p>
+          With lots of unique blocks, you can easily build a page without
+          coding. Build your next landing page. With lots of unique blocks,
+          you can easily build a page without coding any other page.
+        </p>`,
+    },
+  },
+};

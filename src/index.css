@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "gilroy";
+  src: url("/fonts/gilroy-bold.woff2") format("woff2"),
+    url("/fonts/gilroy-bold.woff") format("woff");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "gilroy";
+  src: url("/fonts/gilroy-regular.woff2") format("woff2"),
+    url("/fonts/gilroy-regular.woff") format("woff");
+  font-weight: 400;
+}
+
+@theme {
+  --font-primary: "gilroy", sans-serif;
+
+  --color-primary: #473bf0;
+  --color-primary-hover: #332ba8;
+  --color-blue: #1082e9;
+  --color-black: #000;
+  --color-secondary: #161c2d;
+  --color-white: #fff;
+  --color-white-200: #f4f7fa;
+  --color-white-600: rgba(255, 255, 255, 0.65);
+  --color-bg: #d5d7dd;
+  --color-border: #292f41;
+  --color-gray: #5c616c;
+  --color-gray-100: #595f6a;
+
+  --breakpoint-sm: 320px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+
+  --container-xl: 1150px;
+  --container-2xl: 1200px;
+  --container-3xl: 1446px;
+  --container-4xl: 1456px;
+  --container-5xl: 1470px;
+  --container-6xl: 1780px;
+}
+
+@layer base {
+  body {
+    @apply font-primary text-gray relative min-w-[32rem] bg-white text-xl leading-[1.68] lg:text-xl [&_a]:transition-all;
+  }
+
+  h1,
+  .h1 {
+    @apply font-bold text-4xl text-secondary lg:text-[60px] tracking-tighter mb-4 text-gray;
+  }
+
+  h2,
+  .h2 {
+    @apply font-bold text-2xl text-secondary lg:text-[48px] tracking-tighter leading-[1.2] mb-4 text-gray;
+  }
+
+  h3,
+  .h3 {
+    @apply font-bold text-xl text-secondary tracking-tighter leading-[1.52] mb-4 text-gray;
+  }
+
+  h4,
+  .h4 {
+    @apply font-bold text-lg text-secondary mb-4 text-gray;
+  }
+
+  h5,
+  .h5 {
+    @apply font-bold text-xl mb-4 text-gray;
+  }
+
+  h6,
+  .h6 {
+    @apply font-bold text-base mb-4 text-gray;
+  }
+}
+
+@utility container {
+  @apply mx-auto max-w-xl px-7.5;
+}
+
+@utility btn {
+  @apply inline-flex items-center font-semibold text-base text-white bg-primary rounded-lg px-6 py-2.5 cursor-pointer;
+  @apply hover:bg-primary-hover;
+}
+
+@utility btn-arrow {
+  @apply inline-flex items-center text-lg text-base text-primary font-semibold gap-2 py-3;
+}
