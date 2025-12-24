@@ -1,7 +1,7 @@
 import About from "../sections/About";
 import Banner from "../sections/Banner";
 import Info from "../sections/Info";
-import RelatedPost from "../sections/RelatedPOst";
+import RelatedPost from "../sections/RelatedPost";
 import Team from "../sections/Team";
 
 const Home = () => {
