@@ -1,5 +1,5 @@
 import { blogs } from "../data/blogs";
-import TeamCard from "../components/teamCard";
+import TeamCard from "../components/TeamCard";
 import { Link } from "react-router-dom";
 
 const Team = ({ team }) => {
