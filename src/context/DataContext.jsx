@@ -11,7 +11,7 @@ export const DataProvider = ({ children }) => {
     const handleData = async () => {
       setIsLoading(true);
       try {
-        const response = await fetch("/src/data/mock.json");
+        const response = await fetch("/data/mock.json");
         const dataResponse = await response.json();
         setData(dataResponse);
       } catch (error) {
