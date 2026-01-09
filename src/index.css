@@ -84,7 +84,7 @@
 
 @utility container {
   @apply mx-auto max-w-xl px-5;
-  @apply mx-auto max-w-xl md:px-7.5;
+  @apply md:px-7.5;
 }
 
 @utility btn {

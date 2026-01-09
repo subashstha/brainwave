@@ -1,10 +1,9 @@
-import { blogs } from "../data/blogs";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { DataContext } from "../context/DataContext";
 
 const Header = () => {
-  const { title, logo, navigation, auth } = blogs.header;
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -14,6 +13,12 @@ const Header = () => {
     navigate("/login");
     setIsOpen(false);
   };
+
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return null;
+  const { title, logo, navigation, auth } = data.header;
 
   const navClass = ({ isActive }) =>
     `hover:text-primary ${isActive ? "text-primary" : ""}`;

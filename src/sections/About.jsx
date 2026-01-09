@@ -1,8 +1,15 @@
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const About = ({ about }) => {
-  const data = about || blogs.defaults.about;
-  const { images, title, text } = data;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const aboutData = about || data?.defaults?.about;
+
+  if (!aboutData) return null;
+
+  const { images, title, text } = aboutData;
 
   return (
     <section className="about-block bg-white-200 py-20 lg:py-40">

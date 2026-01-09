@@ -1,8 +1,15 @@
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const PrivacyPolicy = ({ privacy }) => {
-  const data = privacy || blogs.defaults.privacy;
-  const { title, content } = data;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const privacyData = privacy || data?.defaults?.privacy;
+
+  if (!privacyData) return null;
+
+  const { title, content } = privacyData;
 
   return (
     <section className="py-10 md:py-20">

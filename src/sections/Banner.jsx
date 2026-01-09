@@ -1,8 +1,16 @@
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const Banner = ({ banner }) => {
-  const data = banner || blogs.defaults.banner;
-  const { title, text, image, imageDesc } = data;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const bannerData = banner || data?.defaults?.banner;
+
+  if (!bannerData) return null;
+
+  const { title, text, image, imageDesc } = bannerData;
+
   return (
     <section className="banner py-10 md:py-15 lg:py-20 text-center">
       <div className="container">

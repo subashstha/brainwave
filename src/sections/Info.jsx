@@ -1,8 +1,15 @@
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const Info = ({ info }) => {
-  const data = info || blogs.defaults.info;
-  const { title, text } = data;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const infoData = info || data?.defaults?.info;
+
+  if (!infoData) return null;
+
+  const { title, text } = infoData;
 
   return (
     <section className="info-block info-block--alt py-10 md:py-15 lg:py-30">

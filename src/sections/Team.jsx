@@ -1,10 +1,19 @@
-import { blogs } from "../data/blogs";
 import TeamCard from "../components/TeamCard";
 import { Link } from "react-router-dom";
 
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
+import { FaArrowRight } from "react-icons/fa";
+
 const Team = ({ team }) => {
-  const data = team || blogs.defaults.team;
-  const { title, text, teamCards, applyCard } = data;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const teamData = team || data?.defaults?.team;
+
+  if (!teamData) return null;
+
+  const { title, text, teamCards, applyCard } = teamData;
 
   return (
     <section className="team-block py-20 lg:py-30">
@@ -39,14 +48,13 @@ const Team = ({ team }) => {
                   <div className="team__btn">
                     {applyCard.btnText &&
                       (() => {
-                        const Icon = applyCard.icon;
                         return (
                           <Link
-                            to="/contact"
+                            to={applyCard.link}
                             className="btn-arrow"
                             role="button"
                           >
-                            {applyCard.btnText} <Icon />
+                            {applyCard.btnText} <FaArrowRight />
                           </Link>
                         );
                       })()}

@@ -1,8 +1,24 @@
-import { blogs } from "../data/blogs";
 import { Link } from "react-router-dom";
+import { DataContext } from "../context/DataContext";
+import { useContext } from "react";
+
+import { FaTwitter, FaFacebook } from "react-icons/fa";
+import { AiFillInstagram } from "react-icons/ai";
+import { BsLinkedin } from "react-icons/bs";
+
+const icons = {
+  FaTwitter: FaTwitter,
+  FaFacebook: FaFacebook,
+  AiFillInstagram: AiFillInstagram,
+  BsLinkedin: BsLinkedin,
+};
 
 const Footer = () => {
-  const { navigation, copyright, socials, contact } = blogs.footer;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return null;
+  const { navigation, copyright, socials, contact } = data.footer;
 
   return (
     <>
@@ -72,7 +88,7 @@ const Footer = () => {
               <div className="social text-lg">
                 <ul className="flex flex-wrap gap-x-7.5">
                   {socials.map((item, index) => {
-                    const Icon = item.icon;
+                    const Icon = icons[item.icon];
                     return (
                       <li key={index}>
                         <a
@@ -82,7 +98,7 @@ const Footer = () => {
                           rel="noopener noreferrer"
                           className="hover:text-primary"
                         >
-                          <Icon />
+                          {Icon && <Icon />}
                         </a>
                       </li>
                     );

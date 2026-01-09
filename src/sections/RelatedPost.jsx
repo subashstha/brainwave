@@ -1,13 +1,23 @@
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 import BlogCard from "../components/BlogCard";
 
-const RelatedPost = ({ related }) => {
-  const featuredPosts = blogs.posts
-    .filter((post) => post.isFeatured)
+const RelatedPost = () => {
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (!data) return null;
+
+  const relatedData = data.defaults?.related;
+  if (!relatedData) return null;
+
+  const { title } = relatedData;
+
+  const featuredPosts = data.posts
+    ?.filter((post) => post.isFeatured)
     .slice(0, 3);
 
-  const data = related || blogs.defaults.related;
-  const { title } = data;
+  if (!featuredPosts || featuredPosts.length === 0) return null;
 
   return (
     <>

@@ -1,9 +1,12 @@
 import { Link, useParams } from "react-router-dom";
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const BlogDetail = () => {
   const { slug } = useParams();
-  const post = blogs.posts.find((p) => p.slug === slug);
+  const { data, isLoading } = useContext(DataContext);
+  if (isLoading) return <p>Loading...</p>;
+  const post = data?.posts.find((p) => p.slug === slug);
 
   if (!post) {
     return <div>Blog not found</div>;

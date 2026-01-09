@@ -1,9 +1,8 @@
-import { useState } from "react";
-import { blogs } from "../data/blogs";
+import { useContext, useState } from "react";
+import { DataContext } from "../context/DataContext";
 
 const ContactSection = ({ contact }) => {
-  const data = contact || blogs.defaults.contact;
-  const { title } = data;
+  const { data, isLoading } = useContext(DataContext);
 
   const [input, setInput] = useState({
     name: "",
@@ -11,16 +10,28 @@ const ContactSection = ({ contact }) => {
     phone: "",
     message: "",
   });
+
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
+  if (isLoading) {
+    return (
+      <section className="contact-block py-10 md:py-20">
+        <div className="container max-w-200">
+          <p>Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  const contactData = contact || data?.defaults?.contact;
+  if (!contactData) return null;
+
+  const { title } = contactData;
+
   function handleChange(e) {
     const { name, value } = e.target;
-
-    setInput({
-      ...input,
-      [name]: value,
-    });
+    setInput({ ...input, [name]: value });
   }
 
   function validate() {
@@ -33,13 +44,11 @@ const ContactSection = ({ contact }) => {
     }
     if (!input.phone.trim()) newErrors.phone = "Phone number is required";
     if (!input.message.trim()) newErrors.message = "Message is required";
-
     return newErrors;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length > 0) {

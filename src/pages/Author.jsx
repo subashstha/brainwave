@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const slugify = (text) =>
   text
@@ -9,19 +10,35 @@ const slugify = (text) =>
     .replace(/[^\w-]/g, "");
 
 const Author = () => {
-  const { title } = blogs.defaults.author;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const authorData = data?.defaults?.author;
+  if (!authorData) return null;
+
+  const { title } = authorData;
+
+  const posts = data?.posts || [];
 
   const authors = Array.from(
-    new Map(blogs.posts.map((post) => [post.author.name, post.author])).values()
+    new Map(
+      posts
+        .filter((post) => post.author && post.author.name)
+        .map((post) => [post.author.name, post.author])
+    ).values()
   );
+
+  console.log("Authors:", authors);
+
+  if (authors.length === 0) return <p>No authors found.</p>;
 
   return (
     <section className="blog-block py-20">
       <div className="container">
         {title && <h1 className="text-center mb-15">{title}</h1>}
         <div className="blog__row flex flex-wrap -mx-4">
-          {authors.map((item, index) => (
-            <div className="blog__col w-1/3 px-4" key={index}>
+          {authors.map((item) => (
+            <div className="blog__col w-1/3 px-4" key={item.name}>
               <div className="blog-authors mt-8">
                 <Link
                   to={`/author/${slugify(item.name)}`}

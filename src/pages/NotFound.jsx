@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const NotFound = ({ notFound }) => {
-  const data = notFound || blogs.defaults.notFound;
-  const { title, text } = data;
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+  const notfoundData = notFound || data?.defaults?.notFound;
+
+  if (!notfoundData) return null;
+
+  const { title, text } = notfoundData;
+
   return (
     <section className="blog-block py-20">
       <div className="container">

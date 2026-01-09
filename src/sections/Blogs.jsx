@@ -1,140 +1,54 @@
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 import BlogCard from "../components/BlogCard";
-import { blogs } from "../data/blogs";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-
-const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
-  const getPageNumbers = () => {
-    const delta = 2;
-    const range = [];
-    const rangeWithDots = [];
-    let l;
-
-    for (let i = 1; i <= totalPages; i++) {
-      if (
-        i === 1 ||
-        i === totalPages ||
-        (i >= currentPage - delta && i <= currentPage + delta)
-      ) {
-        range.push(i);
-      }
-    }
-
-    for (let i of range) {
-      if (l) {
-        if (i - l === 2) {
-          rangeWithDots.push(l + 1);
-        } else if (i - l > 2) {
-          rangeWithDots.push("...");
-        }
-      }
-      rangeWithDots.push(i);
-      l = i;
-    }
-
-    return rangeWithDots;
-  };
-
-  return (
-    <nav aria-label="Pagination" className="flex gap-x-2">
-      <button
-        onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
-        disabled={currentPage === 1}
-        className="relative inline-flex items-center rounded-md px-2 py-2
-             hover:bg-primary hover:text-white
-             disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-      >
-        <span className="sr-only">Previous</span>
-        <ChevronLeftIcon aria-hidden="true" className="w-5 h-5" />
-      </button>
-
-      {getPageNumbers().map((page, index) =>
-        page === "..." ? (
-          <span
-            key={index}
-            className="relative inline-flex items-center px-4 py-2 text-sm font-semibold"
-          >
-            ...
-          </span>
-        ) : (
-          <button
-            key={index}
-            onClick={() => setCurrentPage(page)}
-            aria-current={currentPage === page ? "page" : undefined}
-            className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold cursor-pointer rounded-lg ${
-              currentPage === page
-                ? "z-10 bg-indigo-500 text-white hover:bg-primary"
-                : "hover:bg-primary hover:text-white"
-            }`}
-          >
-            {page}
-          </button>
-        )
-      )}
-
-      <button
-        onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
-        disabled={currentPage === totalPages}
-        className="relative inline-flex items-center rounded-md px-2 py-2
-             hover:bg-primary hover:text-white
-             disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
-      >
-        <span className="sr-only">Next</span>
-        <ChevronRightIcon aria-hidden="true" className="w-5 h-5" />
-      </button>
-    </nav>
-  );
-};
+import Pagination from "../components/Pagination";
 
 const Blogs = () => {
+  const { data, isLoading } = useContext(DataContext);
+
   const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedAuthor, setSelectedAuthor] = useState("");
   const [sortOption, setSortOption] = useState("newest");
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
   const postsPerPage = 6;
 
   useEffect(() => {
-    setTimeout(() => {
-      setPosts(blogs.posts);
-      setIsLoading(false);
-    }, 500);
-  }, []);
+    if (data?.posts) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPosts(data.posts);
+    }
+  }, [data]);
 
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(searchTerm);
-    }, 1000);
+    }, 500);
     return () => clearTimeout(handler);
   }, [searchTerm]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentPage(1);
   }, [selectedCategory, selectedAuthor, sortOption, debouncedSearch]);
 
   const categories = Array.from(
-    new Set(blogs.posts.flatMap((post) => post.categories))
+    new Set(posts.flatMap((post) => post.categories))
   );
-  const authors = Array.from(
-    new Set(blogs.posts.map((post) => post.author.name))
-  );
-
-  const handleCategoryChange = (e) => setSelectedCategory(e.target.value);
-  const handleAuthorChange = (e) => setSelectedAuthor(e.target.value);
-  const handleSortChange = (e) => setSortOption(e.target.value);
-  const handleSearchChange = (e) => setSearchTerm(e.target.value);
+  const authors = Array.from(new Set(posts.map((post) => post.author.name)));
 
   const filteredPosts = posts
     .filter((post) => {
       const categoryMatch =
-        selectedCategory === "" || post.categories.includes(selectedCategory);
+        !selectedCategory || post.categories.includes(selectedCategory);
       const authorMatch =
-        selectedAuthor === "" || post.author.name === selectedAuthor;
+        !selectedAuthor || post.author.name === selectedAuthor;
       const searchMatch =
-        debouncedSearch === "" ||
+        !debouncedSearch ||
         post.title.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(debouncedSearch.toLowerCase());
       return categoryMatch && authorMatch && searchMatch;
@@ -152,6 +66,16 @@ const Blogs = () => {
   const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
+  if (isLoading) {
+    return <p className="text-center">Loading blogs...</p>;
+  }
+
+  if (!posts || posts.length === 0) {
+    return (
+      <p className="text-center text-gray-500">No blog posts available.</p>
+    );
+  }
+
   return (
     <section className="blog-block py-10 lg:py-20">
       <div className="container">
@@ -162,36 +86,39 @@ const Blogs = () => {
             type="text"
             placeholder="Search blogs..."
             value={searchTerm}
-            onChange={handleSearchChange}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="block w-full bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg px-3 py-2.5"
           />
+
           <select
             value={selectedCategory}
-            onChange={handleCategoryChange}
+            onChange={(e) => setSelectedCategory(e.target.value)}
             className="block w-full bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg px-3 py-2.5"
           >
             <option value="">All Categories</option>
-            {categories.map((cat, index) => (
-              <option value={cat} key={index}>
+            {categories.map((cat, i) => (
+              <option value={cat} key={i}>
                 {cat}
               </option>
             ))}
           </select>
+
           <select
             value={selectedAuthor}
-            onChange={handleAuthorChange}
+            onChange={(e) => setSelectedAuthor(e.target.value)}
             className="block w-full bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg px-3 py-2.5"
           >
             <option value="">All Authors</option>
-            {authors.map((author, index) => (
-              <option value={author} key={index}>
+            {authors.map((author, i) => (
+              <option value={author} key={i}>
                 {author}
               </option>
             ))}
           </select>
+
           <select
             value={sortOption}
-            onChange={handleSortChange}
+            onChange={(e) => setSortOption(e.target.value)}
             className="block w-full bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg px-3 py-2.5"
           >
             <option value="newest">Newest First</option>
@@ -201,19 +128,17 @@ const Blogs = () => {
           </select>
         </div>
 
-        {isLoading ? (
-          <p className="text-center">Loading blogs...</p>
-        ) : currentPosts.length === 0 ? (
+        {currentPosts.length === 0 ? (
           <p className="text-center text-gray-500">No blog posts found.</p>
         ) : (
           <>
             <div className="blog__row md:flex md:flex-wrap -mx-4">
-              {currentPosts.map((item) => (
+              {currentPosts.map((post) => (
                 <div
                   className="blog__col md:w-1/2 lg:w-1/3 px-4 mb-6"
-                  key={item.id}
+                  key={post.id}
                 >
-                  <BlogCard blogCard={item} />
+                  <BlogCard blogCard={post} />
                 </div>
               ))}
             </div>

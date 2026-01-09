@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom";
-import { blogs } from "../data/blogs";
+import { useContext } from "react";
+import { DataContext } from "../context/DataContext";
 
 const Category = () => {
+  const { data, isLoading } = useContext(DataContext);
+
+  if (isLoading) return <p>Loading...</p>;
+
+  const bannerData = data?.defaults?.banner;
+
+  if (!bannerData && !data?.posts) return null;
+
   const categories = Array.from(
-    new Set(blogs.posts.flatMap((post) => post.categories))
+    new Set(data?.posts?.flatMap((post) => post.categories || []))
   );
 
   return (
